@@ -31,12 +31,14 @@ const stepHandler = new Composer<Scenes.WizardContext>();
         ctx.editMessageText(
             "https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=1176996946"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ua_ddos_targets", async (ctx) => {
         ctx.editMessageText(
             "https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=0"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ua_ddos", async (ctx) => {
@@ -75,18 +77,21 @@ const stepHandler = new Composer<Scenes.WizardContext>();
         ctx.editMessageText(
             "https://docs.google.com/forms/d/e/1FAIpQLSeFaWPVnOCRH__sdIHHJEfZyNlRPuabYs54Jx2fr8NKk6Bn_A/viewform"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ua_report_list", async (ctx) => {
         ctx.editMessageText(
             "https://docs.google.com/spreadsheets/d/1Ct51AdIEhgAQoPntFXtmvIgt8zj8Dh7LDB9_wysQtQU/edit#gid=0"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ua_help_info", async (ctx) => {
         ctx.editMessageText(
             "https://docs.google.com/forms/d/e/1FAIpQLSe3M1jW5ieBkd4FMpktrFuRpCpmF5zQjg8W1qHe9uO0z_QO-g/viewform"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ua_help", async (ctx) => {
@@ -108,6 +113,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
         ctx.editMessageText(
             "https://docs.google.com/forms/d/e/1FAIpQLSe43dns0sOTudo9uFU1RroB3DTkvyIOu6haALFmWqp2Ih6nYQ/viewform"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ua_need_help", async (ctx) => {
@@ -127,6 +133,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
     stepHandler.action("ua_chat_link", async (ctx) => {
         ctx.editMessageText("https://t.me/+3aSSvajxwOFkMmIy");
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ua_chat", async (ctx) => {
@@ -181,12 +188,14 @@ const stepHandler = new Composer<Scenes.WizardContext>();
         ctx.editMessageText(
             "https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=1176996946"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ru_ddos_targets", async (ctx) => {
         ctx.editMessageText(
             "https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=0"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ru_ddos", async (ctx) => {
@@ -225,18 +234,21 @@ const stepHandler = new Composer<Scenes.WizardContext>();
         ctx.editMessageText(
             "https://docs.google.com/forms/d/e/1FAIpQLSeFaWPVnOCRH__sdIHHJEfZyNlRPuabYs54Jx2fr8NKk6Bn_A/viewform"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ru_report_list", async (ctx) => {
         ctx.editMessageText(
             "https://docs.google.com/spreadsheets/d/1Ct51AdIEhgAQoPntFXtmvIgt8zj8Dh7LDB9_wysQtQU/edit#gid=0"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ru_help_info", async (ctx) => {
         ctx.editMessageText(
             "https://docs.google.com/forms/d/e/1FAIpQLSe3M1jW5ieBkd4FMpktrFuRpCpmF5zQjg8W1qHe9uO0z_QO-g/viewform"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ru_help", async (ctx) => {
@@ -258,6 +270,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
         ctx.editMessageText(
             "https://docs.google.com/forms/d/e/1FAIpQLSe43dns0sOTudo9uFU1RroB3DTkvyIOu6haALFmWqp2Ih6nYQ/viewform"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ru_need_help", async (ctx) => {
@@ -268,11 +281,14 @@ const stepHandler = new Composer<Scenes.WizardContext>();
                 [Markup.button.callback("Назад", "lang_ru")],
             ])
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ru_chat_link", async (ctx) => {
         ctx.editMessageText("https://t.me/+3aSSvajxwOFkMmIy");
+        ctx.scene.enter("super-wizard");
     });
+
     stepHandler.action("ru_chat", async (ctx) => {
         await ctx.editMessageText(
             "Без спама. Без сбора средств. Без просьбы забанить канал в чате (для этого есть бот и специальная форма). Без рекламы. Не бросать сюда ссылки без описания.\n" +
@@ -320,12 +336,14 @@ const stepHandler = new Composer<Scenes.WizardContext>();
         ctx.editMessageText(
             "https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=1176996946"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("en_ddos_targets", async (ctx) => {
         ctx.editMessageText(
             "https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=0"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("en_ddos", async (ctx) => {
@@ -369,18 +387,21 @@ const stepHandler = new Composer<Scenes.WizardContext>();
         ctx.editMessageText(
             "https://docs.google.com/forms/d/e/1FAIpQLSeFaWPVnOCRH__sdIHHJEfZyNlRPuabYs54Jx2fr8NKk6Bn_A/viewform"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("en_report_list", async (ctx) => {
         ctx.editMessageText(
             "https://docs.google.com/spreadsheets/d/1Ct51AdIEhgAQoPntFXtmvIgt8zj8Dh7LDB9_wysQtQU/edit#gid=0"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("en_help_info", async (ctx) => {
         ctx.editMessageText(
             "https://docs.google.com/forms/d/e/1FAIpQLSe3M1jW5ieBkd4FMpktrFuRpCpmF5zQjg8W1qHe9uO0z_QO-g/viewform"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("en_help", async (ctx) => {
@@ -402,6 +423,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
         ctx.editMessageText(
             "https://docs.google.com/forms/d/e/1FAIpQLSe43dns0sOTudo9uFU1RroB3DTkvyIOu6haALFmWqp2Ih6nYQ/viewform"
         );
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("en_need_help", async (ctx) => {
@@ -421,6 +443,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
     stepHandler.action("en_chat_link", async (ctx) => {
         ctx.editMessageText("https://t.me/+3aSSvajxwOFkMmIy");
+        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("en_chat", async (ctx) => {
@@ -477,28 +500,81 @@ const stage = new Scenes.Stage<Scenes.WizardContext>([superWizard], {
     default: "super-wizard",
 });
 
-bot.use(stage.middleware());
-
-// actions.map(([, action, reactionText]) => {
-//   bot.action(action, (ctx) => {
-//     ctx.session = { inputType: action };
-//     ctx.editMessageText(reactionText);
-//   });
-// });
+// bot.use(stage.middleware());
 
 //group logic part
 
-const hotWords = ["ддос", "допомога", "допомогти"];
+const hw1 = [
+    "новичек",
+    "новичок",
+    "как начать",
+    "я хочу дедос",
+    "инструкции",
+    "инструкция",
+    "новачок",
+    "як почати",
+    "я хочу дедос",
+    "інструкції",
+    "інструкція",
+];
+
+const hw2 = [
+    "https://t.me",
+    "https://www.youtube.com",
+    "https://instagram.com",
+    "https://vk.com",
+    "https://www.tiktok.com",
+    "https://vm.tiktok.com",
+    "https://www.facebook.com",
+];
+
+const hw3 = [
+    "что атакуем",
+    "дайте цель",
+    "какие цели",
+    "цель",
+    "по кому дедосим",
+    "що атакуємо",
+    "дайте ціль",
+    "які цілі",
+    "ціль",
+    "по кому дедосим",
+    "по кому дудосим",
+];
+
+const hasHw = (ctx, hw) => {
+    return hw.some((v) => ctx.message?.text?.toLowerCase().includes(v));
+};
 
 bot.on("message", async (ctx) => {
-    ctx.session?.inputType ? await funcs[ctx.session?.inputType](ctx) : null;
-    ctx.session = { inputType: null };
-
-    if (hotWords.some((v) => ctx.message.text.includes(v))) {
+    const hasHw1 = hasHw(ctx, hw1);
+    const hasHw2 = hasHw(ctx, hw2);
+    const hasHw3 = hasHw(ctx, hw3);
+    if (hasHw1) {
+        await ctx.reply(
+            `Привіт, я бот ІТ армії, як почати ДДоС, інструкціх та цілі знаходяться за посиланням`
+        );
+        await ctx.reply(
+            `https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=1176996946`
+        );
+    }
+    if (hasHw2) {
         await ctx.deleteMessage(ctx.id);
         await ctx.telegram.sendMessage(
             ctx.from.id,
-            `'${ctx.message.text}'\nВаш месадж було видалено\n\nСпробуйте /start`
+            `'${ctx.message.text}'\nВаш месадж було видалено\n\n`
+        );
+        await ctx.telegram.sendMessage(
+            ctx.from.id,
+            `Привіт, я бот ІТ армії, додати канал пропагандистів можна за посиланням \n\n https://docs.google.com/forms/d/e/1FAIpQLSeFaWPVnOCRH__sdIHHJEfZyNlRPuabYs54Jx2fr8NKk6Bn_A/viewform `
+        );
+    }
+    if (hasHw3) {
+        await ctx.reply(
+            `Привіт, я бот ІТ армії, актуальний список цілей за посиланням, також там є статус доступності ресурса`
+        );
+        await ctx.reply(
+            `https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=0`
         );
     }
 });

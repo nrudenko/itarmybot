@@ -18,7 +18,7 @@ if (token === undefined) {
 const bot = new Telegraf(token, { channelMode: false });
 // bot.use(Telegraf.log());
 
-// bot.use(session());
+bot.use(session());
 
 //bot actions logic
 const stepHandler = new Composer<Scenes.WizardContext>();

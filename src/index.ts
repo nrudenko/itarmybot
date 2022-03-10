@@ -500,8 +500,8 @@ const stage = new Scenes.Stage<Scenes.WizardContext>([superWizard], {
     default: "super-wizard",
 });
 
-// bot.use(stage.middleware());
-
+bot.use(stage.middleware());
+// bot.start(stage.middleware());
 //group logic part
 
 const hw1 = [

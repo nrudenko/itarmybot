@@ -281,7 +281,6 @@ const stepHandler = new Composer<Scenes.WizardContext>();
                 [Markup.button.callback("Назад", "lang_ru")],
             ])
         );
-        ctx.scene.enter("super-wizard");
     });
 
     stepHandler.action("ru_chat_link", async (ctx) => {
@@ -501,7 +500,7 @@ const stage = new Scenes.Stage<Scenes.WizardContext>([superWizard], {
 });
 
 bot.use(stage.middleware());
-// bot.start(stage.middleware());
+
 //group logic part
 
 const hw1 = [
@@ -566,7 +565,7 @@ bot.on("message", async (ctx) => {
         );
         await ctx.telegram.sendMessage(
             ctx.from.id,
-            `Привіт, я бот ІТ армії, додати канал пропагандистів можна за посиланням \n\n https://docs.google.com/forms/d/e/1FAIpQLSeFaWPVnOCRH__sdIHHJEfZyNlRPuabYs54Jx2fr8NKk6Bn_A/viewform `
+            `Привіт, я бот ІТ армії, додати канал пропагандистів можна за посиланням\n\nhttps://docs.google.com/forms/d/e/1FAIpQLSeFaWPVnOCRH__sdIHHJEfZyNlRPuabYs54Jx2fr8NKk6Bn_A/viewform\n\nАбо через телеграм бот @stopdrugsbot`
         );
     }
     if (hasHw3) {

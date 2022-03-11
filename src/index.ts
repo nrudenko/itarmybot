@@ -142,8 +142,20 @@ const stepHandler = new Composer<Scenes.WizardContext>();
                 "Обговорюємо тут тільки атаки DDos і їх координацію.",
             Markup.inlineKeyboard([
                 [Markup.button.callback("Перейти в чат", "ua_chat_link")],
+                [Markup.button.callback("Назад", "lang_ua")],
             ])
         );
+    });
+
+    stepHandler.action("lang_select", async (ctx) => {
+        await ctx.editMessageText(
+            "Оберіть мову/Выберете язык/Select language",
+            Markup.inlineKeyboard([
+                Markup.button.callback("➡️ UA", "lang_ua"),
+                Markup.button.callback("➡️ RU", "lang_ru"),
+                Markup.button.callback("➡️ EN", "lang_en"),
+            ])
+        )
     });
 
     stepHandler.action("lang_ua", async (ctx) => {
@@ -173,6 +185,12 @@ const stepHandler = new Composer<Scenes.WizardContext>();
                     Markup.button.callback(
                         "Перейти в живий чат IT Армії",
                         "ua_chat"
+                    ),
+                ],
+                [
+                    Markup.button.callback(
+                        "Перейти до вибору мови",
+                        "lang_select"
                     ),
                 ],
             ])
@@ -294,6 +312,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
                 "Обсуждаем тут только DDos атаки и их координацию.",
             Markup.inlineKeyboard([
                 [Markup.button.callback("Перейти в чат", "ru_chat_link")],
+                [Markup.button.callback("Назад", "lang_ru")],
             ])
         );
     });
@@ -320,6 +339,12 @@ const stepHandler = new Composer<Scenes.WizardContext>();
                     Markup.button.callback(
                         "Перейти в живой чат ИТ армии",
                         "ru_chat"
+                    ),
+                ],
+                [
+                    Markup.button.callback(
+                        "Перейти к выбору языка",
+                        "lang_select"
                     ),
                 ],
             ])
@@ -451,6 +476,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
                 "We discuss here only DDos attacks and their coordination.",
             Markup.inlineKeyboard([
                 [Markup.button.callback("Go to chat", "en_chat_link")],
+                [Markup.button.callback("Go back", "lang_en")],
             ])
         );
     });
@@ -474,6 +500,12 @@ const stepHandler = new Composer<Scenes.WizardContext>();
                 ],
                 [Markup.button.callback("I need help", "en_need_help")],
                 [Markup.button.callback("Go to live Army IT chat", "en_chat")],
+                [
+                    Markup.button.callback(
+                        "Go back to language select",
+                        "lang_select"
+                    ),
+                ],
             ])
         );
     });
@@ -500,6 +532,11 @@ const stage = new Scenes.Stage<Scenes.WizardContext>([superWizard], {
 });
 
 bot.use(Scenes.Stage.privateChat(stage.middleware()));
+
+// To start wizard after bot restart.
+bot.command('/start',
+    (ctx) => ctx.scene.enter("super-wizard")
+);
 
 //group logic part
 

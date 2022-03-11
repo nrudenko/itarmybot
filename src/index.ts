@@ -311,7 +311,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
                 ],
                 [
                     Markup.button.callback(
-                        "Хочу помочь стране стоит навыком/временем",
+                        "Хочу помочь стране своим навыком/временем",
                         "ru_help"
                     ),
                 ],

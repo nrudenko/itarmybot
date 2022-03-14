@@ -36,7 +36,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
     stepHandler.action("ua_ddos_targets", async (ctx) => {
         ctx.editMessageText(
-            "https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=0"
+            "https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit?usp=sharing"
         );
         ctx.scene.enter("super-wizard");
     });
@@ -211,7 +211,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
     stepHandler.action("ru_ddos_targets", async (ctx) => {
         ctx.editMessageText(
-            "https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=0"
+            "https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit?usp=sharing"
         );
         ctx.scene.enter("super-wizard");
     });
@@ -365,7 +365,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
     stepHandler.action("en_ddos_targets", async (ctx) => {
         ctx.editMessageText(
-            "https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=0"
+            "https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit?usp=sharing"
         );
         ctx.scene.enter("super-wizard");
     });
@@ -607,10 +607,7 @@ bot.on("message", async (ctx) => {
     }
     if (hasHw3) {
         await ctx.reply(
-            `Привіт, я бот ІТ армії, актуальний список цілей за посиланням, також там є статус доступності ресурса`
-        );
-        await ctx.reply(
-            `https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=0`
+            `Привіт, я бот ІТ армії, актуальний список цілей за посиланням, також там є статус доступності ресурса\n\nhttps://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit?usp=sharing`
         );
     }
 });

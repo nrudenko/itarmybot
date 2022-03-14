@@ -29,7 +29,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 (() => {
     stepHandler.action("ua_ddos_info", async (ctx) => {
         ctx.editMessageText(
-            "https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=1176996946"
+            "https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265"
         );
         ctx.scene.enter("super-wizard");
     });
@@ -204,7 +204,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 (() => {
     stepHandler.action("ru_ddos_info", async (ctx) => {
         ctx.editMessageText(
-            "https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=1176996946"
+            "https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265"
         );
         ctx.scene.enter("super-wizard");
     });
@@ -358,7 +358,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 (() => {
     stepHandler.action("en_ddos_info", async (ctx) => {
         ctx.editMessageText(
-            "https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=1176996946"
+            "https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265"
         );
         ctx.scene.enter("super-wizard");
     });
@@ -588,10 +588,7 @@ bot.on("message", async (ctx) => {
     const hasHw3 = hasHw(ctx, hw3);
     if (hasHw1) {
         await ctx.reply(
-            `Привіт, я бот ІТ армії, як почати ДДоС, інструкціх та цілі знаходяться за посиланням`
-        );
-        await ctx.reply(
-            `https://docs.google.com/spreadsheets/d/1CpIXntRLQ_ULJMqBQmgW7mShzOhd95nCaL2BhNRnA0o/edit#gid=1176996946`
+            `Привіт, я бот ІТ армії, як почати ДДоС, інструкціх та цілі знаходяться за посиланням\n\nhttps://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265`
         );
     }
     if (hasHw2) {

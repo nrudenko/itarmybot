@@ -562,6 +562,9 @@ const hw2 = [
     "https://www.tiktok.com",
     "https://vm.tiktok.com",
     "https://www.facebook.com",
+    "https://youtu.be/",
+    "t.me/",
+    "https://youtube.com/",
 ];
 
 const hw3 = [
@@ -608,6 +611,30 @@ bot.on("message", async (ctx) => {
         );
     }
 });
+// end group logic.
+
+// notifications.
+const chatId = -1001764189517;
+const notification = 'Привіт, я бот ІТ армії, додай мене та знаходь корисну інформації швидше @itarmyhelper_bot\n\nHi, I am IT army Bot, add me and find popular information @itarmyhelper_bot';
+
+var cron = require('node-cron');
+
+// every 30 mins from 8am to 2am
+cron.schedule('*/30 8-23,0-2 * * *', () => {
+    bot.telegram.sendMessage(
+        chatId,
+        notification
+    );
+});
+
+cron.schedule('0 2-8 * * *', () => {
+    bot.telegram.sendMessage(
+        chatId,
+        notification
+    );
+});
+
+// end notifications.
 
 bot.launch();
 

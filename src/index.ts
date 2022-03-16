@@ -601,17 +601,17 @@ bot.on("message", async (ctx) => {
     if (hasHw2) {
         try {
             await ctx.deleteMessage(ctx.id);
+            await ctx.telegram.sendMessage(
+              ctx.from.id,
+              `'${ctx.message.text}'\nВаш месадж було видалено\n\n`
+            );
+            await ctx.telegram.sendMessage(
+                ctx.from.id,
+                `Привіт, я бот ІТ армії, додати канал пропагандистів можна за посиланням\n\nhttps://docs.google.com/forms/d/e/1FAIpQLSeFaWPVnOCRH__sdIHHJEfZyNlRPuabYs54Jx2fr8NKk6Bn_A/viewform\n\nАбо через телеграм бот @stopdrugsbot`
+            );
         } catch (error) {
             console.log(error);
         }
-        await ctx.telegram.sendMessage(
-            ctx.from.id,
-            `'${ctx.message.text}'\nВаш месадж було видалено\n\n`
-        );
-        await ctx.telegram.sendMessage(
-            ctx.from.id,
-            `Привіт, я бот ІТ армії, додати канал пропагандистів можна за посиланням\n\nhttps://docs.google.com/forms/d/e/1FAIpQLSeFaWPVnOCRH__sdIHHJEfZyNlRPuabYs54Jx2fr8NKk6Bn_A/viewform\n\nАбо через телеграм бот @stopdrugsbot`
-        );
     }
     if (hasHw3) {
         await ctx.reply(

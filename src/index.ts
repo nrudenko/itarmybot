@@ -16,7 +16,9 @@ if (token === undefined) {
 }
 
 const bot = new Telegraf(token, { channelMode: false });
-// bot.use(Telegraf.log());
+if(process.env.LOGS){
+    bot.use(Telegraf.log());
+}
 
 bot.use(session());
 
@@ -597,7 +599,11 @@ bot.on("message", async (ctx) => {
         );
     }
     if (hasHw2) {
-        await ctx.deleteMessage(ctx.id);
+        try {
+            await ctx.deleteMessage(ctx.id);
+        } catch (error) {
+            console.log(error);
+        }
         await ctx.telegram.sendMessage(
             ctx.from.id,
             `'${ctx.message.text}'\nВаш месадж було видалено\n\n`

@@ -16,7 +16,7 @@ if (token === undefined) {
 }
 
 const bot = new Telegraf(token, { channelMode: false });
-if(process.env.LOGS){
+if (process.env.LOGS){
     bot.use(Telegraf.log());
 }
 
@@ -537,11 +537,17 @@ bot.use(Scenes.Stage.privateChat(stage.middleware()));
 
 // To start wizard after bot restart.
 bot.command('/start',
-    (ctx) => ctx.scene.enter("super-wizard")
+    (ctx) => {
+        try {
+            ctx.scene.enter("super-wizard")
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
 );
 
 //group logic part
-
 const hw1 = [
     "новичек",
     "новичок",
@@ -560,6 +566,7 @@ const hw2 = [
     "https://t.me",
     "https://www.youtube.com",
     "https://instagram.com",
+    "https://www.instagram.com/",
     "https://vk.com",
     "https://www.tiktok.com",
     "https://vm.tiktok.com",
@@ -585,14 +592,34 @@ const hw3 = [
     "по кому дудосим",
 ];
 
-const hasHw = (ctx, hw) => {
-    return hw.some((v) => ctx.message?.text?.toLowerCase().includes(v));
+const lastMessage = [];
+
+const hasHw = (ctx, hw, limit) => {
+
+    if (!limit) {
+        return hw.some((v) => ctx.message?.text?.toLowerCase().includes(v));
+    }
+
+    if (hw.some((v) => ctx.message?.text?.toLowerCase().includes(v))) {
+        const messageDate = +ctx.message?.date
+        const chatId = ctx.message?.chat?.id
+
+        const lastMessageDate = lastMessage[chatId] ?? 0;
+
+        if (+messageDate >= +(lastMessageDate + 60)) {
+            lastMessage[chatId] = ctx.message?.date;
+            return true;
+        }
+    }
+
+    return false;
 };
 
 bot.on("message", async (ctx) => {
-    const hasHw1 = hasHw(ctx, hw1);
-    const hasHw2 = hasHw(ctx, hw2);
-    const hasHw3 = hasHw(ctx, hw3);
+    const hasHw1 = hasHw(ctx, hw1, 1);
+    const hasHw2 = hasHw(ctx, hw2, 0);
+    const hasHw3 = hasHw(ctx, hw3, 1);
+
     if (hasHw1) {
         await ctx.reply(
             `Привіт, я бот ІТ армії, як почати ДДоС, інструкціх та цілі знаходяться за посиланням\n\nhttps://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265`
@@ -622,7 +649,7 @@ bot.on("message", async (ctx) => {
 // end group logic.
 
 // notifications.
-const chatId = -1001764189517;
+const chatId = process.env.CHAT_ID;
 const notification = 'Привіт, я бот ІТ армії, додай мене та знаходь корисну інформації швидше @itarmyhelper_bot\n\nHi, I am IT army Bot, add me and find popular information @itarmyhelper_bot';
 
 var cron = require('node-cron');
@@ -641,7 +668,6 @@ cron.schedule('0 2-7 * * *', () => {
         notification
     );
 });
-
 // end notifications.
 
 bot.launch();

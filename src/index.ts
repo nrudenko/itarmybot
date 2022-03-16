@@ -565,6 +565,8 @@ const hw2 = [
     "https://youtu.be/",
     "t.me/",
     "https://youtube.com/",
+    "facebook.com/",
+    "youtube.com/",
 ];
 
 const hw3 = [
@@ -620,14 +622,14 @@ const notification = 'Привіт, я бот ІТ армії, додай мен
 var cron = require('node-cron');
 
 // every 30 mins from 8am to 2am
-cron.schedule('*/30 8-23,0-2 * * *', () => {
+cron.schedule('*/30 8-23,0-1 * * *', () => {
     bot.telegram.sendMessage(
         chatId,
         notification
     );
 });
 
-cron.schedule('0 2-8 * * *', () => {
+cron.schedule('0 2-7 * * *', () => {
     bot.telegram.sendMessage(
         chatId,
         notification

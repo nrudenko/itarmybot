@@ -616,6 +616,13 @@ const hasHw = (ctx, hw, limit) => {
 };
 
 bot.on("message", async (ctx) => {
+    if (hasHw(ctx, ['украинский военный корабль'], 0)) {
+        try {
+            await ctx.deleteMessage(ctx.id);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     const hasHw1 = hasHw(ctx, hw1, 1);
     const hasHw2 = hasHw(ctx, hw2, 0);
     const hasHw3 = hasHw(ctx, hw3, 1);

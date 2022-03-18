@@ -548,49 +548,57 @@ bot.command('/start',
 );
 
 //group logic part
-const hw1 = [
-    "новичек",
-    "новичок",
-    "как начать",
-    "я хочу дедос",
-    "инструкции",
-    "инструкция",
-    "новачок",
-    "як почати",
-    "я хочу дедос",
-    "інструкції",
-    "інструкція",
-];
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-const hw2 = [
-    "https://t.me",
-    "https://www.youtube.com",
-    "https://instagram.com",
-    "https://www.instagram.com/",
-    "https://vk.com",
-    "https://www.tiktok.com",
-    "https://vm.tiktok.com",
-    "https://www.facebook.com",
-    "https://youtu.be/",
-    "t.me/",
-    "https://youtube.com/",
-    "facebook.com/",
-    "youtube.com/",
-];
+function setGoogleVariable(responce, hw, hwVariable) {
+    const jsonString = responce.match(/(?<="table":).*(?=}\);)/g)[0];
+    const json = JSON.parse(jsonString);
 
-const hw3 = [
-    "что атакуем",
-    "дайте цель",
-    "какие цели",
-    "цель",
-    "по кому дедосим",
-    "що атакуємо",
-    "дайте ціль",
-    "які цілі",
-    "ціль",
-    "по кому дедосим",
-    "по кому дудосим",
-];
+    var output = Object.keys(json.rows)
+        .map(function(i) {
+            return json.rows[i]['c'][0]['v'];
+
+        });
+
+    hw[hwVariable] = output;
+}
+
+async function fetchGoogleVariable(googleId, gid, hw, hwVariable) {
+    let response = await new Promise(resolve => {
+        var url = 'https://docs.google.com/spreadsheets/d/'+googleId+'/gviz/tq?tqx=out:json&tq&gid='+gid;
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = 'text';
+        xhr.open("GET", url, true);
+        xhr.onload = function(e) {
+            setGoogleVariable(xhr.responseText, hw, hwVariable);
+            resolve(xhr.response);
+        };
+        xhr.onerror = function () {
+            resolve(undefined);
+            console.error("** An error occurred during the XMLHttpRequest");
+        };
+        xhr.send();
+    })
+}
+
+const googleId = "1UY-DGbGA7RK9Nvd-F25IEN99ptCsbPmOGwh_70Vq4PE";
+
+const hotInfoGid = 0;
+const hotTargetsGid = 863483461;
+const stopGid = 1931042498;
+const linkGid = 96729499;
+
+const hw = {
+    hw1: false,
+    hw2: false,
+    hw3: false,
+    hw4: false
+};
+
+fetchGoogleVariable(googleId, hotInfoGid, hw, 'hw1');
+fetchGoogleVariable(googleId, linkGid, hw, 'hw2');
+fetchGoogleVariable(googleId, hotTargetsGid, hw, 'hw3');
+fetchGoogleVariable(googleId, stopGid, hw, 'hw4');
 
 const lastMessage = [];
 
@@ -615,23 +623,29 @@ const hasHw = (ctx, hw, limit) => {
     return false;
 };
 
+
 bot.on("message", async (ctx) => {
-    if (hasHw(ctx, ['украинский военный корабль'], 0)) {
+    // Spam remove start.
+    if (hasHw(ctx, hw.hw4, 0)) {
         try {
             await ctx.deleteMessage(ctx.id);
         } catch (error) {
             console.log(error);
         }
     }
-    const hasHw1 = hasHw(ctx, hw1, 1);
-    const hasHw2 = hasHw(ctx, hw2, 0);
-    const hasHw3 = hasHw(ctx, hw3, 1);
+    // Spam remove end.
 
+    const hasHw1 = hasHw(ctx, hw.hw1, 1);
+    const hasHw2 = hasHw(ctx, hw.hw2, 0);
+    const hasHw3 = hasHw(ctx, hw.hw3, 1);
+
+    // hot info.
     if (hasHw1) {
         await ctx.reply(
             `Привіт, я бот ІТ армії, як почати ДДоС, інструкціх та цілі знаходяться за посиланням\n\nhttps://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265`
         );
     }
+    // link.
     if (hasHw2) {
         try {
             await ctx.deleteMessage(ctx.id);
@@ -647,6 +661,7 @@ bot.on("message", async (ctx) => {
             console.log(error);
         }
     }
+    // hot targets.
     if (hasHw3) {
         await ctx.reply(
             `Привіт, я бот ІТ армії, актуальний список цілей за посиланням, також там є статус доступності ресурса\n\nhttps://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit?usp=sharing`

@@ -39,7 +39,7 @@ admin.command('restart_bot', (ctx) => {
     }
 });
 
-const adminsIds = [181652519];
+const adminsIds = (process.env.ADMINS || '').split(',');
 bot.use(Composer.acl(adminsIds, admin));
 
 bot.launch();

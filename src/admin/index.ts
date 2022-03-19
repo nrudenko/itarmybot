@@ -17,9 +17,9 @@ if (token === undefined) {
 }
 
 const bot = new Telegraf(token, { channelMode: false });
-// if (process.env.LOGS) {
-bot.use(Telegraf.log());
-// }
+if (process.env.ADMIN_LOGS) {
+    bot.use(Telegraf.log());
+}
 
 var admin = new Composer();
 admin.command('restart_bot', (ctx) => {

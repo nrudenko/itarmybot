@@ -547,8 +547,8 @@ bot.command('/start', (ctx) => {
 //group logic part
 var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
-function setGoogleVariable(responce, hw, hwVariable) {
-    const jsonString = responce.match(/(?<="table":).*(?=}\);)/g)[0];
+function setGoogleVariable(response, hw, hwVariable) {
+    const [jsonString] = response.match(/(?<="table":).*(?=}\);)/g);
     const json = JSON.parse(jsonString);
 
     var output = Object.keys(json.rows).map(function (i) {
@@ -684,7 +684,7 @@ cron.schedule('0 2-7 * * *', () => {
 });
 // end notifications.
 
-bot.launch();
+bot.launch({ dropPendingUpdates: true });
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'));

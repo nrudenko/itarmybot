@@ -31,14 +31,14 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 (() => {
     stepHandler.action('ua_ddos_info', async (ctx) => {
         ctx.editMessageText(
-            'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265'
+            'https://ddosukraine.com.ua/instruction/'
         );
         ctx.scene.enter('super-wizard');
     });
 
     stepHandler.action('ua_ddos_targets', async (ctx) => {
         ctx.editMessageText(
-            'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit?usp=sharing'
+            'https://ddosukraine.com.ua/check/'
         );
         ctx.scene.enter('super-wizard');
     });
@@ -206,14 +206,14 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 (() => {
     stepHandler.action('ru_ddos_info', async (ctx) => {
         ctx.editMessageText(
-            'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265'
+            'https://ddosukraine.com.ua/instruction/'
         );
         ctx.scene.enter('super-wizard');
     });
 
     stepHandler.action('ru_ddos_targets', async (ctx) => {
         ctx.editMessageText(
-            'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit?usp=sharing'
+            'https://ddosukraine.com.ua/check/'
         );
         ctx.scene.enter('super-wizard');
     });
@@ -360,14 +360,14 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 (() => {
     stepHandler.action('en_ddos_info', async (ctx) => {
         ctx.editMessageText(
-            'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265'
+            'https://ddosukraine.com.ua/instruction/'
         );
         ctx.scene.enter('super-wizard');
     });
 
     stepHandler.action('en_ddos_targets', async (ctx) => {
         ctx.editMessageText(
-            'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit?usp=sharing'
+            'https://ddosukraine.com.ua/check/'
         );
         ctx.scene.enter('super-wizard');
     });
@@ -612,7 +612,7 @@ const hasHw = (ctx, hw, limit) => {
 
         const lastMessageDate = lastMessage[chatId] ?? 0;
 
-        if (+messageDate >= +(lastMessageDate + 60)) {
+        if (+messageDate >= +(lastMessageDate + 3 * 60)) {
             lastMessage[chatId] = ctx.message?.date;
             return true;
         }
@@ -638,8 +638,11 @@ bot.on('message', async (ctx) => {
 
     // hot info.
     if (hasHw1) {
-        await ctx.reply(
-            `Привіт, я бот ІТ армії, як почати ДДоС, інструкціх та цілі знаходяться за посиланням\n\nhttps://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265`
+        await ctx.replyWithMarkdown(
+            `ДДоС [інструкція](https://ddosukraine.com.ua/instruction/) та [цілі](https://ddosukraine.com.ua/check/). Для людей не з IT [тут](https://playforukraine.org/)`,
+            {
+                disable_web_page_preview: true
+            }
         );
     }
     // link.
@@ -660,8 +663,11 @@ bot.on('message', async (ctx) => {
     }
     // hot targets.
     if (hasHw3) {
-        await ctx.reply(
-            `Привіт, я бот ІТ армії, актуальний список цілей за посиланням, також там є статус доступності ресурса\n\nhttps://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit?usp=sharing`
+        await ctx.replyWithMarkdown(
+            `ДДоС [інструкція](https://ddosukraine.com.ua/instruction/) та [цілі](https://ddosukraine.com.ua/check/). Для людей не з IT [тут](https://playforukraine.org/)`,
+            {
+                disable_web_page_preview: true
+            }
         );
     }
 });
@@ -670,17 +676,25 @@ bot.on('message', async (ctx) => {
 // notifications.
 const chatId = process.env.CHAT_ID;
 const notification =
-    'Привіт, я бот ІТ армії, додай мене та знаходь корисну інформації швидше @itarmyhelper_bot\n\nHi, I am IT army Bot, add me and find popular information @itarmyhelper_bot';
+    "Правила чату:\n" +
+    "Без спаму\. Без збору коштів\. Без прохань забанити канал у чаті (для цього є офіційний бот @stopdrugsbot, наш бот @itarmyhelper_bot і <a href='https://docs.google.com/forms/d/e/1FAIpQLSeFaWPVnOCRH__sdIHHJEfZyNlRPuabYs54Jx2fr8NKk6Bn_A/viewform'>спеціальна форма</a>). Без реклами\. Не кидати сюди посилання без опису\.\n" +
+    "Запитати чи отримати допомогу такаж можна <a href='https://docs.google.com/forms/d/e/1FAIpQLSfeFKKXQkQaZDwVPZQVRSvbETYtsVZXBawF7fawHeC-m4mQZw/viewform'>тут</a>\n" +
+    "Користуйся ботом @itarmyhelper_bot для пошуку корисної інформації\.\n" +
+    "Швидка перевірка поточних цілей <a href='https://ddosukraine.com.ua/check/'>тут</a>\n\n" +
+    "Chat rules:\n" +
+    "No spam. Without fundraising. No ads. Do not throw links here without a description.\n" +
+    "Use bot @itarmyhelper_bot to find popular information. Ask or offer your help <a href='https://docs.google.com/forms/d/e/1FAIpQLSfeFKKXQkQaZDwVPZQVRSvbETYtsVZXBawF7fawHeC-m4mQZw/viewform'>here</a>.\n" +
+    "<a href='https://ddosukraine.com.ua/check/'>Quick check of current targets</a>";
 
 var cron = require('node-cron');
 
 // every 30 mins from 8am to 2am
 cron.schedule('*/30 8-23,0-1 * * *', () => {
-    bot.telegram.sendMessage(chatId, notification);
+    bot.telegram.sendMessage(chatId, notification, { parse_mode: 'HTML', disable_web_page_preview: true });
 });
 
 cron.schedule('0 2-7 * * *', () => {
-    bot.telegram.sendMessage(chatId, notification);
+    bot.telegram.sendMessage(chatId, notification, { parse_mode: 'HTML', disable_web_page_preview: true });
 });
 // end notifications.
 

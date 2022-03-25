@@ -25,20 +25,28 @@ bot.use(session());
 //bot actions logic
 const stepHandler = new Composer<Scenes.WizardContext>();
 
+const googleInstuctions = "https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265";
+const googleTargets = "https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=0";
+
+const ddosukraineInstructions = "https://ddosukraine.com.ua/instruction/";
+const ddosukraineTargets = "https://ddosukraine.com.ua/check/";
+
+const instructionsLink = googleInstuctions;
+const targetsLink = googleTargets;
 /**
  * UA menu
  */
 (() => {
     stepHandler.action('ua_ddos_info', async (ctx) => {
         ctx.editMessageText(
-            'https://ddosukraine.com.ua/instruction/'
+            instructionsLink
         );
         ctx.scene.enter('super-wizard');
     });
 
     stepHandler.action('ua_ddos_targets', async (ctx) => {
         ctx.editMessageText(
-            'https://ddosukraine.com.ua/check/'
+            targetsLink
         );
         ctx.scene.enter('super-wizard');
     });
@@ -206,14 +214,14 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 (() => {
     stepHandler.action('ru_ddos_info', async (ctx) => {
         ctx.editMessageText(
-            'https://ddosukraine.com.ua/instruction/'
+            instructionsLink
         );
         ctx.scene.enter('super-wizard');
     });
 
     stepHandler.action('ru_ddos_targets', async (ctx) => {
         ctx.editMessageText(
-            'https://ddosukraine.com.ua/check/'
+            targetsLink
         );
         ctx.scene.enter('super-wizard');
     });
@@ -360,14 +368,14 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 (() => {
     stepHandler.action('en_ddos_info', async (ctx) => {
         ctx.editMessageText(
-            'https://ddosukraine.com.ua/instruction/'
+            instructionsLink
         );
         ctx.scene.enter('super-wizard');
     });
 
     stepHandler.action('en_ddos_targets', async (ctx) => {
         ctx.editMessageText(
-            'https://ddosukraine.com.ua/check/'
+            targetsLink
         );
         ctx.scene.enter('super-wizard');
     });
@@ -639,7 +647,7 @@ bot.on('message', async (ctx) => {
     // hot info.
     if (hasHw1) {
         await ctx.replyWithMarkdown(
-            `ДДоС [інструкція](https://ddosukraine.com.ua/instruction/) та [цілі](https://ddosukraine.com.ua/check/). Для людей не з IT [тут](https://playforukraine.org/)`,
+            "ДДоС [інструкція]("+instructionsLink+") та [цілі]("+targetsLink+"). Для людей не з IT [тут](https://playforukraine.org/)",
             {
                 disable_web_page_preview: true
             }
@@ -664,7 +672,7 @@ bot.on('message', async (ctx) => {
     // hot targets.
     if (hasHw3) {
         await ctx.replyWithMarkdown(
-            `ДДоС [інструкція](https://ddosukraine.com.ua/instruction/) та [цілі](https://ddosukraine.com.ua/check/). Для людей не з IT [тут](https://playforukraine.org/)`,
+            "ДДоС [інструкція]("+instructionsLink+") та [цілі]("+targetsLink+"). Для людей не з IT [тут](https://playforukraine.org/)",
             {
                 disable_web_page_preview: true
             }
@@ -680,11 +688,11 @@ const notification =
     "Без спаму\. Без збору коштів\. Без прохань забанити канал у чаті (для цього є офіційний бот @stopdrugsbot, наш бот @itarmyhelper_bot і <a href='https://docs.google.com/forms/d/e/1FAIpQLSeFaWPVnOCRH__sdIHHJEfZyNlRPuabYs54Jx2fr8NKk6Bn_A/viewform'>спеціальна форма</a>). Без реклами\. Не кидати сюди посилання без опису\.\n" +
     "Запитати чи отримати допомогу такаж можна <a href='https://docs.google.com/forms/d/e/1FAIpQLSfeFKKXQkQaZDwVPZQVRSvbETYtsVZXBawF7fawHeC-m4mQZw/viewform'>тут</a>\n" +
     "Користуйся ботом @itarmyhelper_bot для пошуку корисної інформації\.\n" +
-    "Швидка перевірка поточних цілей <a href='https://ddosukraine.com.ua/check/'>тут</a>\n\n" +
+    "Швидка перевірка поточних цілей <a href='"+targetsLink+"'>тут</a>\n\n" +
     "Chat rules:\n" +
     "No spam. Without fundraising. No ads. Do not throw links here without a description.\n" +
     "Use bot @itarmyhelper_bot to find popular information. Ask or offer your help <a href='https://docs.google.com/forms/d/e/1FAIpQLSfeFKKXQkQaZDwVPZQVRSvbETYtsVZXBawF7fawHeC-m4mQZw/viewform'>here</a>.\n" +
-    "<a href='https://ddosukraine.com.ua/check/'>Quick check of current targets</a>";
+    "<a href='"+targetsLink+"'>Quick check of current targets</a>";
 
 var cron = require('node-cron');
 
@@ -696,6 +704,13 @@ cron.schedule('*/30 8-23,0-1 * * *', () => {
 cron.schedule('0 2-7 * * *', () => {
     bot.telegram.sendMessage(chatId, notification, { parse_mode: 'HTML', disable_web_page_preview: true });
 });
+
+cron.schedule('*/15 8-23,0-1 * * *', () => {
+    bot.telegram.sendMessage(chatId,
+        "Ми радимо https://ddosukraine.com.ua/check/ для перевірки статуса цілей. Тегніть адміна і залиште фідбек.",
+        { parse_mode: 'HTML', disable_web_page_preview: false });
+});
+
 // end notifications.
 
 bot.launch({ dropPendingUpdates: true });

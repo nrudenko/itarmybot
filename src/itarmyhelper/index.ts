@@ -697,9 +697,9 @@ const notification =
 var cron = require('node-cron');
 
 // every 30 mins from 8am to 2am
-cron.schedule('*/30 8-23,0-1 * * *', () => {
-    bot.telegram.sendMessage(chatId, notification, { parse_mode: 'HTML', disable_web_page_preview: true });
-});
+// cron.schedule('*/30 8-23,0-1 * * *', () => {
+//     bot.telegram.sendMessage(chatId, notification, { parse_mode: 'HTML', disable_web_page_preview: true });
+// });
 
 cron.schedule('0 2-7 * * *', () => {
     bot.telegram.sendMessage(chatId, notification, { parse_mode: 'HTML', disable_web_page_preview: true });

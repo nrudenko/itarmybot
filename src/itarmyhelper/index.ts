@@ -1,6 +1,5 @@
 // @ts-nocheck
 require('dotenv').config();
-
 const {
     Telegraf,
     Markup,
@@ -15,21 +14,16 @@ if (token === undefined) {
     throw new Error('BOT_TOKEN must be provided!');
 }
 
-const bot = new Telegraf(token, { channelMode: false });
-if (process.env.LOGS) {
-    bot.use(Telegraf.log());
-}
-
-bot.use(session());
-
 //bot actions logic
 const stepHandler = new Composer<Scenes.WizardContext>();
 
-const googleInstuctions = "https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265";
-const googleTargets = "https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=0";
+const googleInstuctions =
+    'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265';
+const googleTargets =
+    'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=0';
 
-const ddosukraineInstructions = "https://ddosukraine.com.ua/instruction/";
-const ddosukraineTargets = "https://ddosukraine.com.ua/check/";
+const ddosukraineInstructions = 'https://ddosukraine.com.ua/instruction/';
+const ddosukraineTargets = 'https://ddosukraine.com.ua/check/';
 
 const instructionsLink = googleInstuctions;
 const targetsLink = googleTargets;
@@ -38,16 +32,12 @@ const targetsLink = googleTargets;
  */
 (() => {
     stepHandler.action('ua_ddos_info', async (ctx) => {
-        ctx.editMessageText(
-            instructionsLink
-        );
+        ctx.editMessageText(instructionsLink);
         ctx.scene.enter('super-wizard');
     });
 
     stepHandler.action('ua_ddos_targets', async (ctx) => {
-        ctx.editMessageText(
-            targetsLink
-        );
+        ctx.editMessageText(targetsLink);
         ctx.scene.enter('super-wizard');
     });
 
@@ -213,16 +203,12 @@ const targetsLink = googleTargets;
  */
 (() => {
     stepHandler.action('ru_ddos_info', async (ctx) => {
-        ctx.editMessageText(
-            instructionsLink
-        );
+        ctx.editMessageText(instructionsLink);
         ctx.scene.enter('super-wizard');
     });
 
     stepHandler.action('ru_ddos_targets', async (ctx) => {
-        ctx.editMessageText(
-            targetsLink
-        );
+        ctx.editMessageText(targetsLink);
         ctx.scene.enter('super-wizard');
     });
 
@@ -367,16 +353,12 @@ const targetsLink = googleTargets;
  */
 (() => {
     stepHandler.action('en_ddos_info', async (ctx) => {
-        ctx.editMessageText(
-            instructionsLink
-        );
+        ctx.editMessageText(instructionsLink);
         ctx.scene.enter('super-wizard');
     });
 
     stepHandler.action('en_ddos_targets', async (ctx) => {
-        ctx.editMessageText(
-            targetsLink
-        );
+        ctx.editMessageText(targetsLink);
         ctx.scene.enter('super-wizard');
     });
 
@@ -541,6 +523,13 @@ const stage = new Scenes.Stage<Scenes.WizardContext>([superWizard], {
     default: 'super-wizard',
 });
 
+const bot = new Telegraf(token, { channelMode: false });
+if (process.env.LOGS) {
+    bot.use(Telegraf.log());
+}
+
+bot.use(session());
+
 bot.use(Scenes.Stage.privateChat(stage.middleware()));
 
 // To start wizard after bot restart.
@@ -551,61 +540,6 @@ bot.command('/start', (ctx) => {
         console.log(error);
     }
 });
-
-//group logic part
-var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-
-function setGoogleVariable(response, hw, hwVariable) {
-    const [jsonString] = response.match(/(?<="table":).*(?=}\);)/g);
-    const json = JSON.parse(jsonString);
-
-    var output = Object.keys(json.rows).map(function (i) {
-        return json.rows[i]['c'][0]['v'];
-    });
-
-    hw[hwVariable] = output;
-}
-
-async function fetchGoogleVariable(googleId, gid, hw, hwVariable) {
-    let response = await new Promise((resolve) => {
-        var url =
-            'https://docs.google.com/spreadsheets/d/' +
-            googleId +
-            '/gviz/tq?tqx=out:json&tq&gid=' +
-            gid;
-        var xhr = new XMLHttpRequest();
-        xhr.responseType = 'text';
-        xhr.open('GET', url, true);
-        xhr.onload = function (e) {
-            setGoogleVariable(xhr.responseText, hw, hwVariable);
-            resolve(xhr.response);
-        };
-        xhr.onerror = function () {
-            resolve(undefined);
-            console.error('** An error occurred during the XMLHttpRequest');
-        };
-        xhr.send();
-    });
-}
-
-const googleId = '1UY-DGbGA7RK9Nvd-F25IEN99ptCsbPmOGwh_70Vq4PE';
-
-const hotInfoGid = 0;
-const hotTargetsGid = 863483461;
-const stopGid = 1931042498;
-const linkGid = 96729499;
-
-const hw = {
-    hw1: false,
-    hw2: false,
-    hw3: false,
-    hw4: false,
-};
-
-fetchGoogleVariable(googleId, hotInfoGid, hw, 'hw1');
-fetchGoogleVariable(googleId, linkGid, hw, 'hw2');
-fetchGoogleVariable(googleId, hotTargetsGid, hw, 'hw3');
-fetchGoogleVariable(googleId, stopGid, hw, 'hw4');
 
 const lastMessage = [];
 
@@ -629,32 +563,35 @@ const hasHw = (ctx, hw, limit) => {
     return false;
 };
 
+let config;
+
 bot.on('message', async (ctx) => {
-    // Spam remove start.
-    if (hasHw(ctx, hw.hw4, 0)) {
+    if (hasHw(ctx, config.stopWords, 0)) {
         try {
             await ctx.deleteMessage(ctx.id);
         } catch (error) {
             console.log(error);
         }
     }
-    // Spam remove end.
 
-    const hasHw1 = hasHw(ctx, hw.hw1, 1);
-    const hasHw2 = hasHw(ctx, hw.hw2, 0);
-    const hasHw3 = hasHw(ctx, hw.hw3, 1);
+    const hasInfoHotWords = hasHw(ctx, config.infoHotWords, 1);
+    const hasLinks = hasHw(ctx, config.links, 0);
+    const hasTargetsHotWords = hasHw(ctx, config.targetsHotWords, 1);
 
-    // hot info.
-    if (hasHw1) {
+    if (hasInfoHotWords) {
         await ctx.replyWithMarkdown(
-            "ДДоС [інструкція]("+instructionsLink+") та [цілі]("+targetsLink+"). Для людей не з IT [тут](https://playforukraine.org/)",
+            'ДДоС [інструкція](' +
+                instructionsLink +
+                ') та [цілі](' +
+                targetsLink +
+                '). Для людей не з IT [тут](https://playforukraine.org/)',
             {
-                disable_web_page_preview: true
+                disable_web_page_preview: true,
             }
         );
     }
-    // link.
-    if (hasHw2) {
+
+    if (hasLinks) {
         try {
             await ctx.deleteMessage(ctx.id);
             await ctx.telegram.sendMessage(
@@ -669,52 +606,28 @@ bot.on('message', async (ctx) => {
             console.log(error);
         }
     }
-    // hot targets.
-    if (hasHw3) {
+
+    if (hasTargetsHotWords) {
         await ctx.replyWithMarkdown(
-            "ДДоС [інструкція]("+instructionsLink+") та [цілі]("+targetsLink+"). Для людей не з IT [тут](https://playforukraine.org/)",
+            'ДДоС [інструкція](' +
+                instructionsLink +
+                ') та [цілі](' +
+                targetsLink +
+                '). Для людей не з IT [тут](https://playforukraine.org/)',
             {
-                disable_web_page_preview: true
+                disable_web_page_preview: true,
             }
         );
     }
 });
 // end group logic.
 
-// notifications.
-const chatId = process.env.CHAT_ID;
-const notification =
-    "Правила чату:\n" +
-    "Без спаму\. Без збору коштів\. Без прохань забанити канал у чаті (для цього є офіційний бот @stopdrugsbot, наш бот @itarmyhelper_bot і <a href='https://docs.google.com/forms/d/e/1FAIpQLSeFaWPVnOCRH__sdIHHJEfZyNlRPuabYs54Jx2fr8NKk6Bn_A/viewform'>спеціальна форма</a>). Без реклами\. Не кидати сюди посилання без опису\.\n" +
-    "Запитати чи отримати допомогу такаж можна <a href='https://docs.google.com/forms/d/e/1FAIpQLSfeFKKXQkQaZDwVPZQVRSvbETYtsVZXBawF7fawHeC-m4mQZw/viewform'>тут</a>\n" +
-    "Користуйся ботом @itarmyhelper_bot для пошуку корисної інформації\.\n" +
-    "Швидка перевірка поточних цілей <a href='"+targetsLink+"'>тут</a>\n\n" +
-    "Chat rules:\n" +
-    "No spam. Without fundraising. No ads. Do not throw links here without a description.\n" +
-    "Use bot @itarmyhelper_bot to find popular information. Ask or offer your help <a href='https://docs.google.com/forms/d/e/1FAIpQLSfeFKKXQkQaZDwVPZQVRSvbETYtsVZXBawF7fawHeC-m4mQZw/viewform'>here</a>.\n" +
-    "<a href='"+targetsLink+"'>Quick check of current targets</a>";
-
-var cron = require('node-cron');
-
-// every 30 mins from 8am to 2am
-// cron.schedule('*/30 8-23,0-1 * * *', () => {
-//     bot.telegram.sendMessage(chatId, notification, { parse_mode: 'HTML', disable_web_page_preview: true });
-// });
-
-cron.schedule('0 2-7 * * *', () => {
-    bot.telegram.sendMessage(chatId, notification, { parse_mode: 'HTML', disable_web_page_preview: true });
-});
-
-cron.schedule('*/15 8-23,0-1 * * *', () => {
-    bot.telegram.sendMessage(chatId,
-        "Ми радимо https://ddosukraine.com.ua/check/ для перевірки статуса цілей. Тегніть адміна і залиште фідбек.",
-        { parse_mode: 'HTML', disable_web_page_preview: false });
-});
-
-// end notifications.
-
-bot.launch({ dropPendingUpdates: true });
-
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));
+
+(async () => {
+    config = await require('./bot_config').fetch();
+    require('./cron').setup(bot);
+    bot.launch({ dropPendingUpdates: true });
+})().catch((err) => console.log(err));

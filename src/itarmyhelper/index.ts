@@ -531,6 +531,9 @@ if (process.env.LOGS) {
 bot.use(session());
 
 bot.use(Scenes.Stage.privateChat(stage.middleware()));
+bot.catch((err) => {
+    console.log(err);
+});
 
 // To start wizard after bot restart.
 bot.command('/start', (ctx) => {

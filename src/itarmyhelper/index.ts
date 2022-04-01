@@ -20,7 +20,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 const googleInstuctions =
     'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265';
 const googleTargets =
-    'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=0';
+    'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=122475613';
 
 const ddosukraineInstructions = 'https://ddosukraine.com.ua/instruction/';
 const ddosukraineTargets = 'https://ddosukraine.com.ua/check/';

@@ -25,8 +25,10 @@ const googleTargets =
 const ddosukraineInstructions = 'https://ddosukraine.com.ua/instruction/';
 const ddosukraineTargets = 'https://ddosukraine.com.ua/check/';
 
-const instructionsLink = googleInstuctions;
+const instructionsLink = ddosukraineInstructions;
 const targetsLink = googleTargets;
+const targetsStatus = 'https://ddosukraine.com.ua/check/'
+const powerfulLink = 'https://ddosukraine.com.ua/powerful/';
 /**
  * UA menu
  */
@@ -584,10 +586,16 @@ bot.on('message', async (ctx) => {
     if (hasInfoHotWords) {
         await ctx.replyWithMarkdown(
             'ДДоС [інструкція](' +
-                instructionsLink +
-                ') та [цілі](' +
-                targetsLink +
-                '). Для людей не з IT [тут](https://playforukraine.org/)',
+            instructionsLink +
+            ') та [цілі](' +
+            targetsLink +
+            '). Для людей не з IT [тут](https://playforukraine.org/), ' +
+            '[Aвтоматичні інструменти](' +
+            powerfulLink +
+            ') | ' +
+            '[Статус цілей](' +
+            targetsStatus +
+            ')',
             {
                 disable_web_page_preview: true,
             }
@@ -613,10 +621,16 @@ bot.on('message', async (ctx) => {
     if (hasTargetsHotWords) {
         await ctx.replyWithMarkdown(
             'ДДоС [інструкція](' +
-                instructionsLink +
-                ') та [цілі](' +
-                targetsLink +
-                '). Для людей не з IT [тут](https://playforukraine.org/)',
+            instructionsLink +
+            ') та [цілі](' +
+            targetsLink +
+            '). Для людей не з IT [тут](https://playforukraine.org/), ' +
+            '[Aвтоматичні інструменти](' +
+            powerfulLink +
+            ') | ' +
+            '[Статус цілей](' +
+            targetsStatus +
+            ')',
             {
                 disable_web_page_preview: true,
             }

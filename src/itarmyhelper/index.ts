@@ -26,7 +26,7 @@ const ddosukraineInstructions = 'https://ddosukraine.com.ua/instruction/';
 const ddosukraineTargets = 'https://ddosukraine.com.ua/check/';
 
 const instructionsLink = ddosukraineInstructions;
-const targetsLink = googleTargets;
+const targetsLink = ddosukraineTargets;
 const targetsStatus = 'https://ddosukraine.com.ua/check/'
 const powerfulLink = 'https://ddosukraine.com.ua/powerful/';
 /**

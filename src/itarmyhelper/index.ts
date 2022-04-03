@@ -23,7 +23,7 @@ const googleTargets =
     'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=122475613';
 
 const ddosukraineInstructions = 'https://ddosukraine.com.ua/instruction/';
-const ddosukraineTargets = 'https://ddosukraine.com.ua/check/';
+const ddosukraineTargets = 'https://ddosukraine.com.ua/';
 
 const instructionsLink = ddosukraineInstructions;
 const targetsLink = ddosukraineTargets;

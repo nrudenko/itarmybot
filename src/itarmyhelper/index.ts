@@ -22,13 +22,13 @@ const googleInstuctions =
 const googleTargets =
     'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=122475613';
 
-const ddosukraineInstructions = 'https://ddosukraine.com.ua/instruction/';
-const ddosukraineTargets = 'https://ddosukraine.com.ua/';
+const ddosukraineInstructions = 'https://itarmy.com.ua/instruction/';
+const ddosukraineTargets = 'https://itarmy.com.ua/';
 
 const instructionsLink = ddosukraineInstructions;
 const targetsLink = ddosukraineTargets;
-const targetsStatus = 'https://ddosukraine.com.ua/check/'
-const powerfulLink = 'https://ddosukraine.com.ua/powerful/';
+const targetsStatus = 'https://itarmy.com.ua/check/'
+const powerfulLink = 'https://itarmy.com.ua/powerful/';
 /**
  * UA menu
  */
@@ -583,19 +583,9 @@ bot.on('message', async (ctx) => {
     const hasLinks = hasHw(ctx, config.links, 0);
     const hasTargetsHotWords = hasHw(ctx, config.targetsHotWords, 1);
 
-    if (hasInfoHotWords) {
+    if (hasInfoHotWords && config.infoHotWordsMessage.enabled) {
         await ctx.replyWithMarkdown(
-            'ДДоС [інструкція](' +
-            instructionsLink +
-            ') та [цілі](' +
-            targetsLink +
-            '). Для людей не з IT [тут](https://playforukraine.org/), ' +
-            '[Aвтоматичні інструменти](' +
-            powerfulLink +
-            ') | ' +
-            '[Статус цілей](' +
-            targetsStatus +
-            ')',
+            config.infoHotWordsMessage.message,
             {
                 disable_web_page_preview: true,
             }
@@ -609,28 +599,23 @@ bot.on('message', async (ctx) => {
                 ctx.from.id,
                 `'${ctx.message.text}'\nВаш месадж було видалено\n\n`
             );
+
+            if (config.linksMessage.enabled)
             await ctx.telegram.sendMessage(
                 ctx.from.id,
-                `Привіт, я бот ІТ армії, додати канал пропагандистів можна за посиланням\n\nhttps://docs.google.com/forms/d/e/1FAIpQLSeFaWPVnOCRH__sdIHHJEfZyNlRPuabYs54Jx2fr8NKk6Bn_A/viewform\n\nАбо через телеграм бот @stopdrugsbot`
+                config.linksMessage.message,
+                {parse_mode: 'Markdown'}
             );
         } catch (error) {
             console.log(error);
         }
     }
 
-    if (hasTargetsHotWords) {
+
+
+    if (hasTargetsHotWords && config.targetsHotWordsMessage) {
         await ctx.replyWithMarkdown(
-            'ДДоС [інструкція](' +
-            instructionsLink +
-            ') та [цілі](' +
-            targetsLink +
-            '). Для людей не з IT [тут](https://playforukraine.org/), ' +
-            '[Aвтоматичні інструменти](' +
-            powerfulLink +
-            ') | ' +
-            '[Статус цілей](' +
-            targetsStatus +
-            ')',
+            config.targetsHotWordsMessage.message,
             {
                 disable_web_page_preview: true,
             }
@@ -645,6 +630,6 @@ process.once('SIGTERM', () => bot.stop('SIGTERM'));
 
 (async () => {
     config = await require('./bot_config').fetch();
-    require('./cron').setup(bot);
+    require('./cron').setup(bot, config);
     bot.launch({ dropPendingUpdates: true });
 })().catch((err) => console.log(err));

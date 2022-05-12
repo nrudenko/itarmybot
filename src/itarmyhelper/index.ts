@@ -10,6 +10,8 @@ const {
 } = require('telegraf');
 
 const token = process.env.BOT_TOKEN;
+
+const {CHANNEL_ID} = process.env;
 if (token === undefined) {
     throw new Error('BOT_TOKEN must be provided!');
 }
@@ -550,7 +552,9 @@ const lastMessage = [];
 
 const hasHw = (ctx, hw, limit) => {
     if (!limit) {
-        return hw.some((v) => ctx.message?.text?.toLowerCase().includes(v));
+
+        return hw.some((v) => ctx.message?.text?.toLowerCase().includes(v))
+          || hw.some((v) => ctx.editedMessage?.text?.toLowerCase().includes(v));
     }
 
     if (hw.some((v) => ctx.message?.text?.toLowerCase().includes(v))) {
@@ -570,7 +574,12 @@ const hasHw = (ctx, hw, limit) => {
 
 let config;
 
-bot.on('message', async (ctx) => {
+bot.on(['message', 'edited_message'], async (ctx) => {
+    // Check if it's forward from main channel.
+    if (ctx.message?.forward_from_chat?.id == CHANNEL_ID) {
+      return;
+    }
+
     if (hasHw(ctx, config.stopWords, 0)) {
         try {
             await ctx.deleteMessage(ctx.id);

@@ -591,6 +591,7 @@ bot.on(['message', 'edited_message'], async (ctx) => {
     const hasInfoHotWords = hasHw(ctx, config.infoHotWords, 1);
     const hasLinks = hasHw(ctx, config.links, 0);
     const hasTargetsHotWords = hasHw(ctx, config.targetsHotWords, 1);
+    const hasInstallerHotWords = hasHw(ctx, config.installerWords, 1);
 
     if (hasInfoHotWords && config.infoHotWordsMessage.enabled) {
         await ctx.replyWithMarkdown(
@@ -620,8 +621,6 @@ bot.on(['message', 'edited_message'], async (ctx) => {
         }
     }
 
-
-
     if (hasTargetsHotWords && config.targetsHotWordsMessage) {
         await ctx.replyWithMarkdown(
             config.targetsHotWordsMessage.message,
@@ -629,6 +628,15 @@ bot.on(['message', 'edited_message'], async (ctx) => {
                 disable_web_page_preview: true,
             }
         );
+    }
+
+    if (hasInstallerHotWords && config.installerHotWordsMessage) {
+      await ctx.replyWithMarkdown(
+        config.installerHotWordsMessage.message,
+        {
+          disable_web_page_preview: true,
+        }
+      );
     }
 });
 // end group logic.

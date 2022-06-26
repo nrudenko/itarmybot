@@ -8,6 +8,7 @@ const pages = [
     ['targetsHotWords', 863483461],
     ['stopWords', 1931042498],
     ['links', 96729499],
+    ['installerWords', 13721637]
 ];
 
 const configPage = 615511405;
@@ -21,7 +22,8 @@ const configs = [
         'cron2',
         'cron3',
         'cron4',
-        'cron5'
+        'cron5',
+        'installerHotWordsMessage'
 ];
 
 

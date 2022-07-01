@@ -580,6 +580,11 @@ bot.on(['message', 'edited_message'], async (ctx) => {
       return;
     }
 
+    // Skip all checkings for admins.
+    if (config.chatAdmins.includes(ctx.message?.from?.id)) {
+      return;
+    }
+
     if (hasHw(ctx, config.stopWords, 0)) {
         try {
             await ctx.deleteMessage(ctx.id);
@@ -646,7 +651,7 @@ process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));
 
 (async () => {
-    config = await require('./bot_config').fetch();
+    config = await require('./bot_config').fetch(bot);
     require('./cron').setup(bot, config);
     bot.launch({ dropPendingUpdates: true });
 })().catch((err) => console.log(err));

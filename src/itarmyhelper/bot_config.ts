@@ -1,5 +1,6 @@
 // @ts-nocheck
 var axios = require('axios');
+const {CHAT_ID} = process.env;
 
 const GOOGLE_ID = '1UY-DGbGA7RK9Nvd-F25IEN99ptCsbPmOGwh_70Vq4PE';
 
@@ -27,7 +28,7 @@ const configs = [
 ];
 
 
-export async function fetch() {
+export async function fetch(bot) {
     const parsedPages = await Promise.all(
         pages.map(async ([name, gid]) => {
             const response = await axios.get(
@@ -80,5 +81,16 @@ export async function fetch() {
         })
     );
 
-    return Object.fromEntries(parsedPages.concat(parsedConfigPage));
+    const chatAdmins = await Promise.all(
+      await bot.telegram.getChatAdministrators(CHAT_ID)
+        .then(function(data){
+          if ( !data || !data.length ) return [];
+          return data.map( async (item) => {return item.user?.id});
+        })
+    );
+
+    const googleConfigs = Object.fromEntries(parsedPages.concat(parsedConfigPage));
+    googleConfigs.chatAdmins = chatAdmins;
+    
+    return googleConfigs;
 }

@@ -62,7 +62,7 @@ const targetsStatusEN = 'https://itarmy.com.ua/check/?lang=en';
             Markup.inlineKeyboard([
                 [Markup.button.callback('Інструкції', 'ua_ddos_info')],
                 [Markup.button.callback('Цілі для атаки', 'ua_ddos_targets')],
-                [Markup.button.callback('Статус цілей', 'ua_ddos_status')]
+                [Markup.button.callback('Статус цілей', 'ua_ddos_status')],
                 [Markup.button.callback('Назад', 'lang_ua')],
             ])
         );

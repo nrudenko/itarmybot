@@ -68,7 +68,7 @@ const targetsProposeEN = 'https://itarmy.com.ua/?lang=en&propose_target';
             'Оберіть дію',
             Markup.inlineKeyboard([
                 [Markup.button.callback('Інструкції', 'ua_ddos_info')],
-                [Markup.button.callback('Цілі для атаки', 'ua_ddos_targets')],
+                [Markup.button.callback('Актуальні цілі', 'ua_ddos_targets')],
                 [Markup.button.callback('Статус цілей', 'ua_ddos_status')],
                 [Markup.button.callback('Запропонувати цілі', 'ua_ddos_propose')],
                 [Markup.button.callback('Назад', 'lang_ua')],
@@ -88,7 +88,7 @@ const targetsProposeEN = 'https://itarmy.com.ua/?lang=en&propose_target';
                 ],
                 [
                     Markup.button.callback(
-                        'Список каналів пропагандисті в для скарг',
+                        'Список каналів пропагандистів для скарг',
                         'ua_report_list'
                     ),
                 ],
@@ -186,7 +186,12 @@ const targetsProposeEN = 'https://itarmy.com.ua/?lang=en&propose_target';
         await ctx.editMessageText(
             'Оберіть дію',
             Markup.inlineKeyboard([
-                [Markup.button.callback('Почати ДДос', 'ua_ddos')],
+                [
+                    Markup.button.callback(
+                        'Почати ДДос',
+                        'ua_ddos'
+                    )
+                ],
                 [
                     Markup.button.callback(
                         'Хочу поскаржитись на канал Телеграм/Інста/ФБ і т.д',
@@ -251,7 +256,7 @@ const targetsProposeEN = 'https://itarmy.com.ua/?lang=en&propose_target';
             'Выберите действие',
             Markup.inlineKeyboard([
                 [Markup.button.callback('Инструкции', 'ru_ddos_info')],
-                [Markup.button.callback('Цели для атаки', 'ru_ddos_targets')],
+                [Markup.button.callback('Актуальные цели', 'ru_ddos_targets')],
                 [Markup.button.callback('Состояние целей', 'ru_ddos_status')],
                 [Markup.button.callback('Предложить цели', 'ru_ddos_propose')],
                 [Markup.button.callback('Назад', 'lang_ru')],
@@ -413,7 +418,7 @@ const targetsProposeEN = 'https://itarmy.com.ua/?lang=en&propose_target';
             'Choose an action',
             Markup.inlineKeyboard([
                 [Markup.button.callback('Instructions', 'en_ddos_info')],
-                [Markup.button.callback('Targets for attack','en_ddos_targets')],
+                [Markup.button.callback('Actual targets','en_ddos_targets')],
                 [Markup.button.callback('Targets status','en_ddos_status')],
                 [Markup.button.callback('Propose targets','en_ddos_propose')],
                 [Markup.button.callback('Go back', 'lang_en')],

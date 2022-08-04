@@ -32,21 +32,70 @@ const instructionsLink = ddosukraineInstructions;
 const targetsLink = ddosukraineTargets;
 const targetsStatus = 'https://itarmy.com.ua/check/';
 const targetsPropose = 'https://itarmy.com.ua/?propose_target';
+const vpsInfoLink = 'https://itarmy.com.ua/vps/';
+const instructionsWindowsLink = 'https://itarmy.com.ua/instruction/#mhddos/#windows/#installer';
+const instructionsLinuxLink = 'TODO';
+const instructionsMacLink = 'TODO';
+
 
 //EN_Links
 const instructionsLinkEN = 'https://itarmy.com.ua/instruction/?lang=en';
 const targetsLinkEN = 'https://itarmy.com.ua/?lang=en&actual-targets';
 const targetsStatusEN = 'https://itarmy.com.ua/check/?lang=en';
 const targetsProposeEN = 'https://itarmy.com.ua/?lang=en&propose_target';
+//const vpsInfoLinkEN = 'https://itarmy.com.ua/vps/?lang=en';
+const instructionsWindowsLinkEN = 'https://itarmy.com.ua/instruction/?lang=en#mhddos/#windows/#installer';
+const instructionsLinuxLinkEN = 'TODO';
+const instructionsMacLinkEN = 'TODO';
 
 /**
  * UA menu
  */
 (() => {
-    stepHandler.action('ua_ddos_info', async (ctx) => {
-        ctx.editMessageText(instructionsLink);
+
+  stepHandler.action('ua_info_windows', async (ctx) => {
+      ctx.editMessageText(instructionsWindowsLink);
+      ctx.scene.enter('super-wizard');
+  });
+
+  stepHandler.action('ua_info_linux', async (ctx) => {
+      ctx.editMessageText(instructionsLinuxLink);
+      ctx.scene.enter('super-wizard');
+  });
+
+  stepHandler.action('ua_info_mac', async (ctx) => {
+      ctx.editMessageText(instructionsMacLink);
+      ctx.scene.enter('super-wizard');
+  });
+
+  stepHandler.action('ua_info_pc', async (ctx) => {
+      await ctx.editMessageText(
+          'Оберіть, операційну систему',
+          Markup.inlineKeyboard([
+              [Markup.button.callback('Інструкції для Windows', 'ua_info_windows')],
+              [Markup.button.callback('Інструкції для Linux', 'ua_info_linux')],
+              [Markup.button.callback('Інструкції для Mac', 'ua_info_mac')],
+              [Markup.button.callback('Назад', 'ua_ddos_info')],
+          ])
+      );
+  });
+
+    stepHandler.action('ua_info_vps', async (ctx) => {
+        ctx.editMessageText(vpsInfoLink);
         ctx.scene.enter('super-wizard');
     });
+
+    stepHandler.action('ua_ddos_info', async (ctx) => {
+        await ctx.editMessageText(
+            'Оберіть, з якими потужностями ви хочите долучитись до DDOS атаки',
+            Markup.inlineKeyboard([
+                [Markup.button.callback('Інструкції для ПК та Ноутбуків', 'ua_info_pc')],
+                [Markup.button.callback('Інструкції для VPS та VDS серверів', 'ua_info_vps')],
+                [Markup.button.callback('Назад', 'ua_ddos')],
+            ])
+        );
+    });
+
 
     stepHandler.action('ua_ddos_targets', async (ctx) => {
         ctx.editMessageText(targetsLink);

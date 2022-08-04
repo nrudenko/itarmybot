@@ -31,11 +31,13 @@ const ddosukraineTargets = 'https://itarmy.com.ua/?actual-targets';
 const instructionsLink = ddosukraineInstructions;
 const targetsLink = ddosukraineTargets;
 const targetsStatus = 'https://itarmy.com.ua/check/';
+const targetsPropose = 'https://itarmy.com.ua/?propose_target';
 
 //EN_Links
 const instructionsLinkEN = 'https://itarmy.com.ua/instruction/?lang=en';
 const targetsLinkEN = 'https://itarmy.com.ua/?lang=en&actual-targets';
 const targetsStatusEN = 'https://itarmy.com.ua/check/?lang=en';
+const targetsProposeEN = 'https://itarmy.com.ua/?lang=en&propose_target';
 
 /**
  * UA menu
@@ -56,6 +58,11 @@ const targetsStatusEN = 'https://itarmy.com.ua/check/?lang=en';
         ctx.scene.enter('super-wizard');
     });
 
+    stepHandler.action('ua_ddos_propose', async (ctx) => {
+        ctx.editMessageText(targetsPropose);
+        ctx.scene.enter('super-wizard');
+    });
+
     stepHandler.action('ua_ddos', async (ctx) => {
         await ctx.editMessageText(
             'Оберіть дію',
@@ -63,6 +70,7 @@ const targetsStatusEN = 'https://itarmy.com.ua/check/?lang=en';
                 [Markup.button.callback('Інструкції', 'ua_ddos_info')],
                 [Markup.button.callback('Цілі для атаки', 'ua_ddos_targets')],
                 [Markup.button.callback('Статус цілей', 'ua_ddos_status')],
+                [Markup.button.callback('Запропонувати цілі', 'ua_ddos_propose')],
                 [Markup.button.callback('Назад', 'lang_ua')],
             ])
         );
@@ -233,6 +241,11 @@ const targetsStatusEN = 'https://itarmy.com.ua/check/?lang=en';
         ctx.scene.enter('super-wizard');
     });
 
+    stepHandler.action('ru_ddos_propose', async (ctx) => {
+        ctx.editMessageText(targetsPropose);
+        ctx.scene.enter('super-wizard');
+    });
+
     stepHandler.action('ru_ddos', async (ctx) => {
         await ctx.editMessageText(
             'Выберите действие',
@@ -240,6 +253,7 @@ const targetsStatusEN = 'https://itarmy.com.ua/check/?lang=en';
                 [Markup.button.callback('Инструкции', 'ru_ddos_info')],
                 [Markup.button.callback('Цели для атаки', 'ru_ddos_targets')],
                 [Markup.button.callback('Состояние целей', 'ru_ddos_status')],
+                [Markup.button.callback('Предложить цели', 'ru_ddos_propose')],
                 [Markup.button.callback('Назад', 'lang_ru')],
             ])
         );
@@ -389,6 +403,11 @@ const targetsStatusEN = 'https://itarmy.com.ua/check/?lang=en';
         ctx.scene.enter('super-wizard');
     });
 
+    stepHandler.action('en_ddos_propose', async (ctx) => {
+        ctx.editMessageText(targetsProposeEN);
+        ctx.scene.enter('super-wizard');
+    });
+
     stepHandler.action('en_ddos', async (ctx) => {
         await ctx.editMessageText(
             'Choose an action',
@@ -396,6 +415,7 @@ const targetsStatusEN = 'https://itarmy.com.ua/check/?lang=en';
                 [Markup.button.callback('Instructions', 'en_ddos_info')],
                 [Markup.button.callback('Targets for attack','en_ddos_targets')],
                 [Markup.button.callback('Targets status','en_ddos_status')],
+                [Markup.button.callback('Propose targets','en_ddos_propose')],
                 [Markup.button.callback('Go back', 'lang_en')],
             ])
         );

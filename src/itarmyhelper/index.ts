@@ -114,7 +114,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
     stepHandler.action('ua_ddos_pc_linux', async (ctx) => {
       ctx.editMessageText(
-        'Оберіть утіліту',
+        'Інструкції для Linux',
         Markup.inlineKeyboard([
           [Markup.button.callback('MHDDoS', 'ua_ddos_pc_linux_mhddos')],
           [Markup.button.callback('DB1000n', 'ua_ddos_pc_linux_db1000n')],
@@ -163,7 +163,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
     stepHandler.action('ua_ddos_pc_mac', async (ctx) => {
       ctx.editMessageText(
-        'Оберіть утіліту',
+        'Інструкції для Mac',
         Markup.inlineKeyboard([
           [Markup.button.callback('MHDDoS', 'ua_ddos_pc_mac_mhddos')],
           [Markup.button.callback('DB1000n', 'ua_ddos_pc_mac_db1000n')],
@@ -177,7 +177,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
     stepHandler.action('ua_ddos_pc_windows_ukita', async (ctx) => {
       ctx.editMessageText(
-        'https://itarmy.com.ua/instruction/#mhddos/#windows/#installer',
+        'https://itarmy.com.ua/instruction/#windows/#windows_mhddos/#installer',
         Markup.inlineKeyboard([
           [Markup.button.callback('Назад', 'ua_ddos_pc_windows')],
         ])
@@ -357,7 +357,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
       'How you want to join?',
       Markup.inlineKeyboard([
         [Markup.button.callback('Instructions for PC and laptops', 'en_ddos_pc')],
-        [Markup.button.callback('Instructions for VPS and VDS servers', 'en_ddos_vps')],
+        // [Markup.button.callback('Instructions for VPS and VDS servers', 'en_ddos_vps')],
         [Markup.button.callback('Automation attack bot', 'en_ddos_bot')],
         [Markup.button.callback('Back', 'en_ddos')],
       ])
@@ -378,7 +378,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
   stepHandler.action('en_ddos_pc_linux_mhddos', async (ctx) => {
     ctx.editMessageText(
-      'https://itarmy.com.ua/instruction/?lang=en#linux/#linux_mhddos',
+      'https://itarmy.com.ua/instruction/?lang=en#linux/#linux_mhddos/#binaries',
       Markup.inlineKeyboard([
         [Markup.button.callback('Back', 'en_ddos_pc_linux')],
       ])
@@ -414,7 +414,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
   stepHandler.action('en_ddos_pc_linux', async (ctx) => {
     ctx.editMessageText(
-      'Select utility',
+      'Instructions for Linux',
       Markup.inlineKeyboard([
         [Markup.button.callback('MHDDoS', 'en_ddos_pc_linux_mhddos')],
         [Markup.button.callback('DB1000n', 'en_ddos_pc_linux_db1000n')],
@@ -463,13 +463,13 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
   stepHandler.action('en_ddos_pc_mac', async (ctx) => {
     ctx.editMessageText(
-      'Select utility',
+      'Instructions for Mac',
       Markup.inlineKeyboard([
         [Markup.button.callback('MHDDoS', 'en_ddos_pc_mac_mhddos')],
         [Markup.button.callback('DB1000n', 'en_ddos_pc_mac_db1000n')],
         [Markup.button.callback('Distress', 'en_ddos_pc_mac_distress')],
         [Markup.button.callback('UA Shield', 'en_ddos_pc_mac_uashield')],
-        [Markup.button.callback('Назад', 'en_ddos_pc')],
+        [Markup.button.callback('Back', 'en_ddos_pc')],
       ])
     );
   });
@@ -477,7 +477,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
   stepHandler.action('en_ddos_pc_windows_ukita', async (ctx) => {
     ctx.editMessageText(
-      'https://itarmy.com.ua/instruction/?lang=en#mhddos/#windows/#installer',
+      'https://itarmy.com.ua/instruction/?lang=en#windows/#windows_mhddos/#installer',
       Markup.inlineKeyboard([
         [Markup.button.callback('Back', 'en_ddos_pc_windows')],
       ])
@@ -595,12 +595,12 @@ const stepHandler = new Composer<Scenes.WizardContext>();
             'en_ddos'
           )
         ],
-        [
-          Markup.button.callback(
-            'Our vacancies',
-            'en_vacancy'
-          ),
-        ],
+        // [
+        //   Markup.button.callback(
+        //     'Our vacancies',
+        //     'en_vacancy'
+        //   ),
+        // ],
         [
           Markup.button.callback(
             'IT Army of Ukraine telegram chat',

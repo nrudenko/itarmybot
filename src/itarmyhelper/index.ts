@@ -533,7 +533,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
   stepHandler.action('en_ddos', async (ctx) => {
     await ctx.editMessageText(
-      'How can we help you?',
+      'What are you looking for?',
       Markup.inlineKeyboard([
         [Markup.button.callback('Instructions', 'en_ddos_info')],
         [Markup.button.callback('Current targets', 'en_ddos_targets')],

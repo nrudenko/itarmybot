@@ -277,7 +277,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
         await ctx.editMessageText(
             'Привіт, я бот IT Army of Ukraine. Допоможу тобі долучитись до доброї справи. Давай почнемо з вибору мови?\n' +
             '-----------------------------------------------------------------------------\n' +
-            'Hi, I\'m IT Army of Ukraine Bot. I can help you to join us. Choose the language',
+            'Hello! I am the IT Army of Ukraine Bot! I can help you in joining us! Please choose a language below.',
             Markup.inlineKeyboard([
                 Markup.button.callback('➡️ UA', 'lang_ua'),
                 Markup.button.callback('➡️ EN', 'lang_en'),
@@ -366,7 +366,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
   stepHandler.action('en_ddos_pc', async (ctx) => {
     ctx.editMessageText(
-      'Recommended utilities instructions (MHDDOS, DB1000N, DISTRESS)',
+      'Recommended utilities and instructions for MHDDOS, DB1000N and DISTRESS',
       Markup.inlineKeyboard([
         [Markup.button.callback('Instructions for Linux', 'en_ddos_pc_linux')],
         [Markup.button.callback('Instructions for Windows', 'en_ddos_pc_windows')],
@@ -533,7 +533,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
   stepHandler.action('en_ddos', async (ctx) => {
     await ctx.editMessageText(
-      'What are you looking for?',
+      'How can we help you?',
       Markup.inlineKeyboard([
         [Markup.button.callback('Instructions', 'en_ddos_info')],
         [Markup.button.callback('Current targets', 'en_ddos_targets')],
@@ -577,7 +577,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
     await ctx.editMessageText(
       'Привіт, я бот IT Army of Ukraine. Допоможу тобі долучитись до доброї справи. Давай почнемо з вибору мови?\n' +
       '-----------------------------------------------------------------------------\n' +
-      'Hi, I\'m IT Army of Ukraine Bot. I can help you to join us. Choose the language',
+      'Hello! I am the IT Army of Ukraine Bot! I can help you in joining us! Please choose a language below.',
       Markup.inlineKeyboard([
         Markup.button.callback('➡️ UA', 'lang_ua'),
         Markup.button.callback('➡️ EN', 'lang_en'),
@@ -587,7 +587,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
 
   stepHandler.action('lang_en', async (ctx) => {
     await ctx.editMessageText(
-      'What are you looking for?',
+      'How can we help you?',
       Markup.inlineKeyboard([
         [
           Markup.button.callback(
@@ -624,7 +624,7 @@ const superWizard = new Scenes.WizardScene(
         await ctx.reply(
           'Привіт, я бот IT Army of Ukraine. Допоможу тобі долучитись до доброї справи. Давай почнемо з вибору мови?\n' +
           '-----------------------------------------------------------------------------\n' +
-          'Hi, I\'m IT Army of Ukraine Bot. I can help you to join us. Choose the language',
+          'Hello! I am the IT Army of Ukraine Bot! I can help you in joining us! Please choose a language below.',
             Markup.inlineKeyboard([
                 Markup.button.callback('➡️ UA', 'lang_ua'),
                 Markup.button.callback('➡️ EN', 'lang_en'),

@@ -19,19 +19,6 @@ if (token === undefined) {
 //bot actions logic
 const stepHandler = new Composer<Scenes.WizardContext>();
 
-const googleInstuctions =
-    'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=31829265';
-const googleTargets =
-    'https://docs.google.com/spreadsheets/d/1xDbYcqCteABOZo3gGGP2uHG-0i3f-UuMGbNZ-Bo_W8Q/edit#gid=122475613';
-
-const ddosukraineInstructions = 'https://itarmy.com.ua/instruction/';
-const ddosukraineTargets = 'https://itarmy.com.ua/';
-
-const instructionsLink = ddosukraineInstructions;
-const targetsLink = ddosukraineTargets;
-const targetsStatus = 'https://itarmy.com.ua/check/'
-const powerfulLink = 'https://itarmy.com.ua/powerful/';
-
 /**
  * UA menu
  */
@@ -91,7 +78,7 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
 
     stepHandler.action('ua_ddos_pc_linux_mhddos', async (ctx) => {
       ctx.editMessageText(
-        'https://itarmy.com.ua/instruction/#mhddos/#ubuntu',
+        'https://itarmy.com.ua/instruction/#linux/#linux_mhddos',
         Markup.inlineKeyboard([
           [Markup.button.callback('Назад', 'ua_ddos_pc_linux')],
         ])
@@ -100,7 +87,7 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
 
     stepHandler.action('ua_ddos_pc_linux_db1000n', async (ctx) => {
       ctx.editMessageText(
-        'https://itarmy.com.ua/instruction/#db1000n',
+        'https://itarmy.com.ua/instruction/#linux/#linux_db1000n',
         Markup.inlineKeyboard([
           [Markup.button.callback('Назад', 'ua_ddos_pc_linux')],
         ])
@@ -109,12 +96,21 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
 
     stepHandler.action('ua_ddos_pc_linux_distress', async (ctx) => {
       ctx.editMessageText(
-        'https://itarmy.com.ua/instruction/#dstress',
+        'https://itarmy.com.ua/instruction/#linux/#linux_distress',
         Markup.inlineKeyboard([
           [Markup.button.callback('Назад', 'ua_ddos_pc_linux')],
         ])
       );
     });
+
+  stepHandler.action('ua_ddos_pc_linux_uashield', async (ctx) => {
+    ctx.editMessageText(
+      'https://itarmy.com.ua/instruction/#linux/#linux_uashield',
+      Markup.inlineKeyboard([
+        [Markup.button.callback('Назад', 'ua_ddos_pc_linux')],
+      ])
+    );
+  });
 
     stepHandler.action('ua_ddos_pc_linux', async (ctx) => {
       ctx.editMessageText(
@@ -123,6 +119,7 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
           [Markup.button.callback('MHDDoS', 'ua_ddos_pc_linux_mhddos')],
           [Markup.button.callback('DB1000n', 'ua_ddos_pc_linux_db1000n')],
           [Markup.button.callback('Distress', 'ua_ddos_pc_linux_distress')],
+          [Markup.button.callback('UA Shield', 'ua_ddos_pc_linux_uashield')],
           [Markup.button.callback('Назад', 'ua_ddos_pc')],
         ])
       );
@@ -130,7 +127,7 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
 
     stepHandler.action('ua_ddos_pc_mac_mhddos', async (ctx) => {
       ctx.editMessageText(
-        'https://itarmy.com.ua/instruction/#mhddos/#mac',
+        'https://itarmy.com.ua/instruction/#mac/#mac_mhddos',
         Markup.inlineKeyboard([
           [Markup.button.callback('Назад', 'ua_ddos_pc_mac')],
         ])
@@ -139,7 +136,7 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
 
     stepHandler.action('ua_ddos_pc_mac_db1000n', async (ctx) => {
       ctx.editMessageText(
-        'https://itarmy.com.ua/instruction/#db1000n',
+        'https://itarmy.com.ua/instruction/#mac/#mac_db1000n',
         Markup.inlineKeyboard([
           [Markup.button.callback('Назад', 'ua_ddos_pc_mac')],
         ])
@@ -148,7 +145,16 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
 
     stepHandler.action('ua_ddos_pc_mac_distress', async (ctx) => {
       ctx.editMessageText(
-        'https://itarmy.com.ua/instruction/#dstress',
+        'https://itarmy.com.ua/instruction/#mac/#mac_distress',
+        Markup.inlineKeyboard([
+          [Markup.button.callback('Назад', 'ua_ddos_pc_mac')],
+        ])
+      );
+    });
+
+    stepHandler.action('ua_ddos_pc_mac_uashield', async (ctx) => {
+      ctx.editMessageText(
+        'https://itarmy.com.ua/instruction/#mac/#mac_uashield',
         Markup.inlineKeyboard([
           [Markup.button.callback('Назад', 'ua_ddos_pc_mac')],
         ])
@@ -162,6 +168,7 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
           [Markup.button.callback('MHDDoS', 'ua_ddos_pc_mac_mhddos')],
           [Markup.button.callback('DB1000n', 'ua_ddos_pc_mac_db1000n')],
           [Markup.button.callback('Distress', 'ua_ddos_pc_mac_distress')],
+          [Markup.button.callback('UA Shield', 'ua_ddos_pc_mac_uashield')],
           [Markup.button.callback('Назад', 'ua_ddos_pc')],
         ])
       );
@@ -371,7 +378,7 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
 
   stepHandler.action('en_ddos_pc_linux_mhddos', async (ctx) => {
     ctx.editMessageText(
-      'https://itarmy.com.ua/instruction/?lang=en#mhddos/#ubuntu',
+      'https://itarmy.com.ua/instruction/?lang=en#linux/#linux_mhddos',
       Markup.inlineKeyboard([
         [Markup.button.callback('Back', 'en_ddos_pc_linux')],
       ])
@@ -380,7 +387,7 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
 
   stepHandler.action('en_ddos_pc_linux_db1000n', async (ctx) => {
     ctx.editMessageText(
-      'https://itarmy.com.ua/instruction/?lang=en#dn1000n',
+      'https://itarmy.com.ua/instruction/?lang=en#linux/#linux_db1000n',
       Markup.inlineKeyboard([
         [Markup.button.callback('Back', 'en_ddos_pc_linux')],
       ])
@@ -389,7 +396,16 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
 
   stepHandler.action('en_ddos_pc_linux_distress', async (ctx) => {
     ctx.editMessageText(
-      'https://itarmy.com.ua/instruction/#dstress',
+      'https://itarmy.com.ua/instruction/?lang=en#linux/#linux_distress',
+      Markup.inlineKeyboard([
+        [Markup.button.callback('Back', 'en_ddos_pc_linux')],
+      ])
+    );
+  });
+
+  stepHandler.action('en_ddos_pc_linux_uashield', async (ctx) => {
+    ctx.editMessageText(
+      'https://itarmy.com.ua/instruction/?lang=en#linux/#linux_uashield',
       Markup.inlineKeyboard([
         [Markup.button.callback('Back', 'en_ddos_pc_linux')],
       ])
@@ -403,6 +419,7 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
         [Markup.button.callback('MHDDoS', 'en_ddos_pc_linux_mhddos')],
         [Markup.button.callback('DB1000n', 'en_ddos_pc_linux_db1000n')],
         [Markup.button.callback('Distress', 'en_ddos_pc_linux_distress')],
+        [Markup.button.callback('UA Shield', 'en_ddos_pc_linux_uashield')],
         [Markup.button.callback('Back', 'en_ddos_pc')],
       ])
     );
@@ -410,7 +427,7 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
 
   stepHandler.action('en_ddos_pc_mac_mhddos', async (ctx) => {
     ctx.editMessageText(
-      'https://itarmy.com.ua/instruction/?lang=en#mhddos/#mac',
+      'https://itarmy.com.ua/instruction/?lang=en#mac/#mac_mhddos',
       Markup.inlineKeyboard([
         [Markup.button.callback('Back', 'en_ddos_pc_mac')],
       ])
@@ -419,7 +436,7 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
 
   stepHandler.action('en_ddos_pc_mac_db1000n', async (ctx) => {
     ctx.editMessageText(
-      'https://itarmy.com.ua/instruction/?lang=en#dn1000n',
+      'https://itarmy.com.ua/instruction/?lang=en#mac/#mac_db1000n',
       Markup.inlineKeyboard([
         [Markup.button.callback('Back', 'en_ddos_pc_mac')],
       ])
@@ -428,7 +445,16 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
 
   stepHandler.action('en_ddos_pc_mac_distress', async (ctx) => {
     ctx.editMessageText(
-      'https://itarmy.com.ua/instruction/#dstress',
+      'https://itarmy.com.ua/instruction/?lang=en#mac/#mac_distress',
+      Markup.inlineKeyboard([
+        [Markup.button.callback('Back', 'en_ddos_pc_mac')],
+      ])
+    );
+  });
+
+  stepHandler.action('en_ddos_pc_mac_uashield', async (ctx) => {
+    ctx.editMessageText(
+      'https://itarmy.com.ua/instruction/?lang=en#mac/#mac_uashield',
       Markup.inlineKeyboard([
         [Markup.button.callback('Back', 'en_ddos_pc_mac')],
       ])
@@ -442,6 +468,7 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
         [Markup.button.callback('MHDDoS', 'en_ddos_pc_mac_mhddos')],
         [Markup.button.callback('DB1000n', 'en_ddos_pc_mac_db1000n')],
         [Markup.button.callback('Distress', 'en_ddos_pc_mac_distress')],
+        [Markup.button.callback('UA Shield', 'en_ddos_pc_mac_uashield')],
         [Markup.button.callback('Назад', 'en_ddos_pc')],
       ])
     );
@@ -519,7 +546,7 @@ const powerfulLink = 'https://itarmy.com.ua/powerful/';
 
   stepHandler.action('en_vacancy', async (ctx) => {
     await ctx.editMessageText(
-      'https://itarmy.com.ua/vacancies/',
+      'https://itarmy.com.ua/vacancies/?lang=en',
       Markup.inlineKeyboard([
         [Markup.button.callback('Back', 'lang_en')],
       ])
@@ -601,7 +628,7 @@ const superWizard = new Scenes.WizardScene(
             Markup.inlineKeyboard([
                 Markup.button.callback('➡️ UA', 'lang_ua'),
                 Markup.button.callback('➡️ EN', 'lang_en'),
-            ], {columns: 1}
+            ],
             )
         );
         return ctx.wizard.next();

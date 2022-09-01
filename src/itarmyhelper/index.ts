@@ -676,7 +676,8 @@ const hasHw = (ctx, hw, limit) => {
 
         const lastMessageDate = lastMessage[chatId] ?? 0;
 
-        if (+messageDate >= +(lastMessageDate + 3 * 60)) {
+        // Cooldown.
+        if (+messageDate >= +(lastMessageDate + 10 * 60)) {
             lastMessage[chatId] = ctx.message?.date;
             return true;
         }

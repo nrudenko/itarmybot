@@ -3,6 +3,8 @@ var axios = require('axios');
 const {CHAT_ID} = process.env;
 
 const GOOGLE_ID = '1UY-DGbGA7RK9Nvd-F25IEN99ptCsbPmOGwh_70Vq4PE';
+// DEV config
+// const GOOGLE_ID = '1PuQBFDW7RccSNishWJf_wajXOSecT68ghAG8s3U3LUw';
 
 const pages = [
     ['infoHotWords', 0],

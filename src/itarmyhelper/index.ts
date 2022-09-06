@@ -244,9 +244,9 @@ const stepHandler = new Composer<Scenes.WizardContext>();
         );
     });
 
-    stepHandler.action('ua_vacancy', async (ctx) => {
+    stepHandler.action('ua_volunteer', async (ctx) => {
         await ctx.editMessageText(
-            'https://itarmy.com.ua/vacancies/',
+            'https://itarmy.com.ua/volunteer/',
             Markup.inlineKeyboard([
                 [Markup.button.callback('Назад', 'lang_ua')],
             ])
@@ -297,8 +297,8 @@ const stepHandler = new Composer<Scenes.WizardContext>();
                 ],
                 [
                     Markup.button.callback(
-                        'Наші вакансії',
-                        'ua_vacancy'
+                        'Стати волонтером IT Army of Ukraine',
+                        'ua_volunteer'
                     ),
                 ],
                 [
@@ -544,9 +544,9 @@ const stepHandler = new Composer<Scenes.WizardContext>();
     );
   });
 
-  stepHandler.action('en_vacancy', async (ctx) => {
+  stepHandler.action('en_volunteer', async (ctx) => {
     await ctx.editMessageText(
-      'https://itarmy.com.ua/vacancies/?lang=en',
+      'https://itarmy.com.ua/volunteer/?lang=en',
       Markup.inlineKeyboard([
         [Markup.button.callback('Back', 'lang_en')],
       ])

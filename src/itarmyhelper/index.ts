@@ -237,7 +237,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
             Markup.inlineKeyboard([
                 [Markup.button.callback('Інструкції', 'ua_ddos_info')],
                 [Markup.button.callback('Aктуальні цілі', 'ua_ddos_targets')],
-                [Markup.button.callback('Статус цілей', 'ua_ddos_targets_status')],
+                // [Markup.button.callback('Статус цілей', 'ua_ddos_targets_status')],
                 [Markup.button.callback('Запропонувати цілі', 'ua_add_target')],
                 [Markup.button.callback('Назад', 'lang_ua')],
             ])
@@ -537,7 +537,7 @@ const stepHandler = new Composer<Scenes.WizardContext>();
       Markup.inlineKeyboard([
         [Markup.button.callback('Instructions', 'en_ddos_info')],
         [Markup.button.callback('Current targets', 'en_ddos_targets')],
-        [Markup.button.callback('Target statuses', 'en_ddos_targets_status')],
+        // [Markup.button.callback('Target statuses', 'en_ddos_targets_status')],
         [Markup.button.callback('Add target', 'en_add_target')],
         [Markup.button.callback('Back', 'lang_en')],
       ])

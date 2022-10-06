@@ -4,14 +4,16 @@ const {CHAT_ID} = process.env;
 
 const GOOGLE_ID = '1UY-DGbGA7RK9Nvd-F25IEN99ptCsbPmOGwh_70Vq4PE';
 // DEV config
-// const GOOGLE_ID = '1PuQBFDW7RccSNishWJf_wajXOSecT68ghAG8s3U3LUw';
+// const GOOGLE_ID = '1G8_vhR3Mbb7BBV0S8AQs75cqksMI6laInEY15x4wJQw';
 
 const pages = [
     ['infoHotWords', 0],
     ['targetsHotWords', 863483461],
     ['stopWords', 1931042498],
     ['links', 96729499],
-    ['installerWords', 13721637]
+    ['installerWords', 13721637],
+    ['statWords', 835174228]
+
 ];
 
 const configPage = 615511405;
@@ -26,7 +28,8 @@ const configs = [
         'cron3',
         'cron4',
         'cron5',
-        'installerHotWordsMessage'
+        'installerHotWordsMessage',
+        'statMessage'
 ];
 
 

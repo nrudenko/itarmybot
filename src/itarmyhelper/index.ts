@@ -676,7 +676,7 @@ const hasHw = (ctx, hw, limit) => {
 
         const lastMessageDate = lastMessage[chatId] ?? 0;
 
-        // Cooldown.
+        // Cooldown 10 mins.
         if (+messageDate >= +(lastMessageDate + 10 * 60)) {
             lastMessage[chatId] = ctx.message?.date;
             return true;
@@ -711,6 +711,7 @@ bot.on(['message', 'edited_message'], async (ctx) => {
     const hasLinks = hasHw(ctx, config.links, 0);
     const hasTargetsHotWords = hasHw(ctx, config.targetsHotWords, 1);
     const hasInstallerHotWords = hasHw(ctx, config.installerWords, 1);
+    const hasStatWords = hasHw(ctx, config.statWords, 1);
 
     if (hasInfoHotWords && config.infoHotWordsMessage.enabled) {
         await ctx.replyWithMarkdown(
@@ -752,6 +753,15 @@ bot.on(['message', 'edited_message'], async (ctx) => {
     if (hasInstallerHotWords && config.installerHotWordsMessage) {
       await ctx.replyWithMarkdown(
         config.installerHotWordsMessage.message,
+        {
+          disable_web_page_preview: true,
+        }
+      );
+    }
+
+    if (hasStatWords && config.statMessage) {
+      await ctx.replyWithMarkdown(
+        config.statMessage.message,
         {
           disable_web_page_preview: true,
         }

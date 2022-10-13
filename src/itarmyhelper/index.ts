@@ -695,9 +695,17 @@ bot.on(['message', 'edited_message'], async (ctx) => {
     }
 
     // Skip all checkings for admins.
-    if (config.chatAdmins.includes(ctx.message?.from?.id)) {
+    if (config.chatAdmins.includes(ctx.message?.from?.id) || ctx.message?.from?.is_bot) {
       return;
     }
+
+    // Delete sticker in 10 mins.
+    if (ctx.message?.sticker !== undefined || ctx.message?.animation !== undefined) {
+      setTimeout(
+        () => ctx.deleteMessage(ctx.id),
+        10 * 60 * 1000)
+    }
+
 
     if (hasHw(ctx, config.stopWords, 0)) {
         try {
